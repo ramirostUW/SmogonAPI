@@ -10,11 +10,10 @@ The goal of the project is to create an API that scrapes Smogon Data on the fly 
 ## Data Sources
 ### Main Source
 - https://smogon.com
-### Supplemental static datasets
-- https://www.kaggle.com/datasets/notlucasp/Pokemon-gen-18-dataset
-- https://www.kaggle.com/datasets/timbuck/Pokemon-generation-9-scarlet-violet-datasets
+### Supplemental static dataset
+- https://www.kaggle.com/datasets/mrdew25/pokemon-database
 
-The two static datasets will be used to provide static data for basic queries like listing Pokémon in a gen, to avoid making unnecessary scrapes. We have a separate dataset for gens 1-8 and gen 9 because we could not find a complete dataset that went past gen 8, due to the recent release of gen 9.
+The static dataset is used to provide static data for supplemental queries like the evolutionary requirements of a Pokemon, which is not available directly on Smogon but is useful regardless.
 
 ## User Profiles
 ### User A
