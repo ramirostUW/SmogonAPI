@@ -1,0 +1,8 @@
+README.md
+setup.py
+bin/start_smogon_api_local_server
+smogonapi.egg-info/PKG-INFO
+smogonapi.egg-info/SOURCES.txt
+smogonapi.egg-info/dependency_links.txt
+smogonapi.egg-info/requires.txt
+smogonapi.egg-info/top_level.txt

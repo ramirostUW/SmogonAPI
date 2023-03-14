@@ -1,0 +1,5 @@
+#!python
+
+from smogonapi.smogonapi import main
+
+main.main()
