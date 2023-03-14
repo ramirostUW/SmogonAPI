@@ -6,7 +6,7 @@ mostly just grabs the endpoints from the appropriate submodules.
 
 import uvicorn
 from fastapi import FastAPI
-from smogonapi.submodules import smogon_endpoints, http_endpoints, kaggle_data_endpoints
+from .submodules import smogon_endpoints, http_endpoints, kaggle_data_endpoints
 
 myApp = FastAPI()
 myApp.include_router(smogon_endpoints.router)
