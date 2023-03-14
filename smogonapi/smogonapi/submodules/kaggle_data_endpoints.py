@@ -24,7 +24,7 @@ def get_pokemon_stats_historical(pokemon: str):
 
     pokemon_stats_data = load_pokemon_stats()
     pokemon_stats = None
-    if pokemon.lower() in pokemon_stats_data.keys():
+    if pokemon.lower() in pokemon_stats_data:
         pokemon_stats = pokemon_stats_data[pokemon.lower()]
     response = {}
     if pokemon_stats is None:
