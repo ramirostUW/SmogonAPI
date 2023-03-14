@@ -4,7 +4,7 @@ primarily return scraped data from Smogon.com.
 """
 
 import json
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 import requests
 from bs4 import BeautifulSoup as bs
 import pandas as pd
@@ -54,7 +54,7 @@ def get_items(gen_name):
     }
 
 @router.get("/getTopPokemon")
-def get_top_pokemon(stats, gen):
+def get_top_pokemon(stats: list = Query(), gen: str = Query()):
     """
     Scrapes the HTML from the Smogon Dex for the given generation. Particularly, it scrapes all
     eligible pokemon in the generation (along with their stats), compacts it into dataframe object,
