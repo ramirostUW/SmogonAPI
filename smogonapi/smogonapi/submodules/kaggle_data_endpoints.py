@@ -27,3 +27,20 @@ def get_pokemon_stats_historical(pokemon: str):
         response['status'] = "Success"
         response['stats'] = pokemon_stats
     return response
+
+@router.get("/GetInGameData/{gen_name}/{pokemon_name}")
+def get_game_data(gen_name, pokemon_name):
+    """
+    docstring
+    """
+    return {"message": "not implemented yet",
+        "gen_name": gen_name,
+        "pokemon_name": pokemon_name}
+
+@router.get("/GetListOfAbilities/{gen_name}")
+def get_abilities(gen_name):
+    """
+    docstring
+    """
+    return {"message": "not implemented yet",
+        "gen_name": gen_name}
