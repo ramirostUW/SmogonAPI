@@ -30,7 +30,7 @@ def get_sprite(gen_name, pokemon_name):
     """
     docstring
     """
-    return {"message": "not implemented yet", 
+    return {"message": "not implemented yet",
         "gen_name": gen_name,
         "pokemon_name": pokemon_name}
 
@@ -39,7 +39,7 @@ def get_tier(gen_name, tier_name):
     """
     docstring
     """
-    return {"message": "not implemented yet", 
+    return {"message": "not implemented yet",
         "gen_name": gen_name,
         "tier_name": tier_name}
 
@@ -49,7 +49,7 @@ def get_items(gen_name):
     docstring
     """
     return {
-        "message": "not implemented yet", 
+        "message": "not implemented yet",
         "gen_name": gen_name
     }
 
