@@ -69,14 +69,62 @@ def get_smogon_data(gen_name, pokemon_name):
             err_msg = err.message
         return {"errorType": type(err).__name__, "error": err_msg}
 
-@router.get("/GetSprite/{gen_name}/{pokemon_name}")
-def get_sprite(gen_name, pokemon_name):
+
+@router.get("/GetPokemonByGen/{gen_name}/")
+def get_gen(gen_name):
     """
-    docstring
+    Parameters
+    ----------
+    gen_name (str)
+        A string representing a generation of Pokemon games. Can be "rb" (for Red/Blue),
+        "gs" (for Gold/Sliver), "rb" (for Ruby/Sapphire), "dp" (for Diamond/Pearl),
+        "bw" (for Black/White), "xy" (for X/Y), "sm" (for Sun/Moon), "ss" (for Sword/Shield),
+        or "sv" (for Scarlet/Violet)
+
+    Returns
+    -------
+    (JSON)
+        A JSON object representing the list of Pokemon from the specified Generation
+
+    Exceptions
+    ----------
+    ValueError
+        Will be thrown under different conditions:
+
+            When the input is missing
+
+            When the input is invalid
+
+            When no data was retrieved
     """
-    return {"message": "not implemented yet",
-        "gen_name": gen_name,
-        "pokemon_name": pokemon_name}
+    try:
+        if not gen_name:
+            raise ValueError("missing input")
+        valid_gen = gen_name in valid_gens
+        if not valid_gen:
+            raise ValueError("invalid gen name")
+        url = "https://www.smogon.com/dex/" + gen_name + "/pokemon/"
+        url_page = requests.get(url, timeout=100000)
+        soup = bs(url_page.content, 'html.parser')
+
+        script = soup.find_all("script")[1]
+        script_insides = script.text
+        data = json.loads(script_insides.replace("dexSettings = ", "").strip())['injectRpcs']
+        if not data:
+            raise ValueError("empty set of data for the given inputs")
+        filtered_data = []
+        data= data[1][1]['pokemon']
+        for pokemon in data:
+            poke_format = pokemon['formats']
+            if poke_format:
+                if poke_format[0].lower() != "CAP":
+                    filtered_data.append(pokemon)
+        return filtered_data
+    except Exception as err:
+        err_msg = str(err)
+        if hasattr(err, 'message'):
+            err_msg = err.message
+        return {"errorType": type(err).__name__, "error": err_msg}
 
 @router.get("/GetPokemonByGenAndTier/{gen_name}/{tier_name}")
 def get_tier(gen_name, tier_name):
@@ -95,7 +143,7 @@ def get_tier(gen_name, tier_name):
     Returns
     -------
     (JSON)
-        A JSON object representing the Smogon data for the Pokemon from the specified Generation
+        A JSON object representing the list of Pokemon from the specified Generation and Tier
 
     Exceptions
     ----------

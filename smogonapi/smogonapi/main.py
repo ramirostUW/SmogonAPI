@@ -9,8 +9,8 @@ from fastapi import FastAPI
 from .submodules import smogon_endpoints, http_endpoints, kaggle_data_endpoints
 
 myApp = FastAPI()
-myApp.include_router(smogon_endpoints.router)
 myApp.include_router(http_endpoints.router)
+myApp.include_router(smogon_endpoints.router)
 myApp.include_router(kaggle_data_endpoints.router)
 
 

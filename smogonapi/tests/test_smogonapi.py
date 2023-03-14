@@ -12,8 +12,8 @@ from smogonapi.main import myApp
 
 class TestSmogonAPI(unittest.TestCase):
     """
-    This test suite makes sure the API and its endpoints all
-    work and return valid and meaningful responses.
+    This test suite makes sure the API can, at mininum, boot up
+    and return the root endpoint
     """
 
     def test_valid_procfile(self):

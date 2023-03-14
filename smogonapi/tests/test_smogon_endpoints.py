@@ -14,28 +14,7 @@ from smogonapi.submodules import smogon_endpoints
 
 class TestSmogonEndpoints(unittest.TestCase):
     """
-    Performs different types of unit tests, imported from the unittest package
-
-    Functions
-    ---------
-    test_get_top_pokemon_smoke()
-        performs a smoke test, which checks whether the function get_top_pokemon() performs
-        correctly
-    test_get_top_pokemon_stats_is_list()
-        An edge test which validates that a ValueError is raised when a list is not passed for the
-        stats parameter
-    test_get_top_pokemon_stat_is_string()
-        An edge test which validates that a ValueError is raised when the stats parameter contains
-        non-strings
-    test_get_top_pokemon_stat_is_valid()
-        An edge test which validates that a ValueError is raised when the stats parameter contains
-        invalid strings (i.e. anything that is not a pokemon stat)
-    test_get_top_pokemon_gen_is_string()
-        An edge test which validates that a ValueError is raised when the gen parameter is not a
-        string
-    test_get_top_pokemon_gen_is_valid()
-        An edge test which validates that a ValueError is raised when the gen parameter is an
-        invalid string (i.e. anything that is not a valid pokemon generation)
+    Performs different types of unit tests on the endpoints handling scraped Smogon data
     """
     # Smoke Test
     def test_get_top_pokemon_smoke(self):
@@ -117,6 +96,31 @@ class TestSmogonEndpoints(unittest.TestCase):
         """
         client = TestClient(myApp)
         response = client.get("/GetSmogonData/ss/Carizard")
+        assert response.status_code == 200
+        assert response.json()['errorType'] == "ValueError"
+    
+    def test_smoke_get_gendata(self):
+        """
+        This smoke test ensures the GetPokemonByGen endpoint
+        returns a valid response.
+        """
+        client = TestClient(myApp)
+        response = client.get("/GetPokemonByGen/rb/")
+        assert response.status_code == 200
+
+        pokemon_list = response.json()
+        for pokemon in pokemon_list:
+            assert "name" in pokemon.keys()
+            assert "types" in pokemon.keys()
+            assert "abilities" in pokemon.keys()
+
+    def test_gendata_invalid_gen(self):
+        """
+        This smoke test ensures the GetPokemonByGen endpoint
+        returns a ValueError if the gen is invalid.
+        """
+        client = TestClient(myApp)
+        response = client.get("GetPokemonByGen/badGen/")
         assert response.status_code == 200
         assert response.json()['errorType'] == "ValueError"
 

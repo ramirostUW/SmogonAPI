@@ -31,6 +31,14 @@ def root ():
             margin: 0;
             }
 
+            a {
+                color: #40E0D0;
+            }
+
+            a:hover {
+                color: hotpink;
+            }
+
             /* CSS for main element */
             .intro {
             display: flex;
