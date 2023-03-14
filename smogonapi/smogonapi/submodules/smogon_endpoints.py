@@ -81,8 +81,7 @@ def get_pokemon_data():
     return json.loads(script_insides.replace("dexSettings = ", "").strip())['injectRpcs'][1][1]
 
 @router.get("/getTopPokemon")
-# pylint: disable=unsubscriptable-object
-def get_top_pokemon(stats: list[str] | None = Query(), gen: str = Query()):
+def get_top_pokemon(stats: list[str] = Query(), gen: str = Query()):
     """
     Scrapes the HTML from the Smogon Dex for the given generation. Particularly, it scrapes all
     eligible pokemon in the generation (along with their stats), compacts it into dataframe object,
