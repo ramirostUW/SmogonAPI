@@ -176,7 +176,6 @@ def root ():
                 <p>Using our API, you can use analytical tools and languages like R to 
                     run stats and make charts on Smogon data.
                 </p>
-                <p><button class="card_button">More Info</button></p>
                 </div>
             </div>
             </div>
@@ -188,8 +187,7 @@ def root ():
                 <div class="container">
                 <h2>Make alternate views!</h2>
                 <p class="card_title">For: Developers</p>
-                <p>Want to practice web development? Make a Smogon clone with data directly from the source!</p>
-                <p><button class="card_button">More Info</button></p>
+                <p>Want to practice web development? Make a Smogon clone with data directly from the source!</p> 
                 </div>
             </div>
             </div>
@@ -201,8 +199,7 @@ def root ():
                 <div class="container">
                 <h2>Build the perfect team!</h2>
                 <p class="card_title">For: Trainers & Competitors</p>
-                <p>Looking to win a VGC regional? Use our data to construct the perfect team for the meta!</p>
-                <p><button class="card_button">More Info</button></p>
+                <p>Looking to win a VGC regional? Use our data to construct the perfect team for the meta!</p> 
                 </div>
             </div>
             </div>
