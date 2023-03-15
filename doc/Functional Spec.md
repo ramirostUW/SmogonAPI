@@ -10,37 +10,34 @@ The goal of the project is to create an API that scrapes Smogon Data on the fly 
 ## Data Sources
 ### Main Source
 - https://smogon.com
-### Supplemental static dataset
-- https://www.kaggle.com/datasets/mrdew25/pokemon-database
+### Supplemental static datasets
+- https://www.kaggle.com/datasets/notlucasp/Pokemon-gen-18-dataset
+- https://www.kaggle.com/datasets/timbuck/Pokemon-generation-9-scarlet-violet-datasets
 
-The static dataset is used to provide static data for supplemental queries like the evolutionary requirements of a Pokemon, which is not available directly on Smogon but is useful regardless.
+The two static datasets will be used to provide static data for basic queries like listing Pokémon in a gen, to avoid making unnecessary scrapes. We have a separate dataset for gens 1-8 and gen 9 because we could not find a complete dataset that went past gen 8, due to the recent release of gen 9.
 
 ## User Profiles
-### User A
-User A is a competitive Pokémon player who wants to know what strategies would best suit the Pokémon she has. She wants to use the Smogon API to retrieve the StrategyDex for a given Pokémon, and a particular generation. She does not have any particular technical skills, but wants to be able to query for the best available strategies using a simple user interface.
+### User Alpha
+User Alpha wants to practice his web development skills. They decide to make a reproduction of Smogon.com, because they are passionate about competitive Pokémon and want to make something they are interested in. In order to do so, they will need a way to access the Smogon data.
 
-### User B
-User B is a casual Pokémon player who wants to know the in-game locations of different items he needs to complete his game. He wants to be able to query the item, as well as the game. He does not have any particular technical knowledge.
+### User Brown
+User Brown is a data science student. They are taking a data visualization course and have been assigned a project where they must display a dataset of their choice. They decide to to make a bar graph showing how the average attack stat for a Pokémon has changed across Pokémon generations. To do so, they need to find data on Pokémon by gen so they can aggregate Attack Stat values.
 
-### User C
-User C is a data scientist. She wants to create a dashboard that visualizes information that she is able to pull from the Smogon API. For instance, she wants to show the stat distribution of different Pokémon across generations. She also wants to highlight how different Pokémon have changed competitive format tiers across time. She has skills in visualizing data from CSV and JSON files.
-
-### User D
-User D is a mobile app developer who is interested in creating a tool that translates Pokémon data into an Arabic Pokémon Encyclopedia. He is able to know how to pull data from the API, and create a translator tool that can translate the information. He also has experience with creating websites and web design.
+### User Charlie
+User Charlie is a competitive Pokémon player and amateur coder. They would like a faster way to build teams than to scroll through each Pokémon's Smogon page and check which one has sample sets. They decide to write a program to find the sample sets ror Pokémon with high values in a certain stat.
 
 ## Use Cases
-### Check StrategyDex
-**Objective:** The user is preparing for a Pokémon battle. In order to refer to Pokémon strategies during the battle, she wants to have access to Pokémon strategies without having to visit Smogon and look for her Pokémon in the browser. This use case is pratical for competitive Pokémon players such as user A.
+### Check Best Pokémons
+**Objective:** User Charlie is preparing for a Pokémon battle. They want to have a quick look at best Pokémons on certain stats, such as Attack and Speed. They also want to find Pokémons with top stats on average.
 
-**Expected Interactions:** The user specifies the name of a Pokémon or item and the generation ti belongs to. The API pulls the Strategy Dex Page for the Pokémon or item from Smogon.
+**Expected Interactions:** User Charlie inputs the generation of the Pokémon and the stat they are looking for. They input a certain stat, and the API returns top 5 Pokémons that are at peak for this stat. To find Pokémons with top stats on average, they input a list of stats, and the API returns 5 Pokémons with highest average stats.
 
+### Get Generation Items
+**Objective:** User Alpha is adding descriptions to items in a generation for a reproduction of Smogon.com. They want to extract item descriptions from Smogon, but they don't want to parse the whole page that contains a lot of unnecessary information and look for texts they want.
 
-### Get In-Game Items
-**Objective:** The user is stuck while playing a Pokémon series game. He cannot find a powerful item in the game, and he wants some instructions about the in-game location of the item. As the latest generation of Pokémon series games has been released recently, this use case can be common among casual Pokémon players.
-
-**Expected Interactions:** The user selects the game he is playing and specifies the name of the item. The API returns the in-game location of the given item that the user specifies.
+**Expected Interactions:** User Alpha turns to the GetItems endpoint and inputs the generation they look for. The API returns a JSON that contains all items in that generation, including "description" attribute that contains item descriptions.
 
 ### Query Pokémon Data
-**Objective:** The user wants to query a list of Pokémons or items in a form that is easy to process in an application, such as a CSV file. This use case is common for Pokémon content creators such as user C and D.
+**Objective:** User Brown is working on a bar graph showing how the average attack stat for a Pokémon has changed across Pokémon generations. They want to query Attack Stat values of a Pokémon name Pikachu in a list of generations, and they want the data in a form that is easy to process for data visualization, such as a JSON object.
 
-**Expected Interactions:** The user inputs a list of Pokémons or items and the generations they belong to. The API returns a CSV file of different Pokémon statistics, based on the inputs that the user provides.
+**Expected Interactions:** At endpoint GetPokemonByGen, User Brown inputs the generation they want to query. The API returns a JSON object of all Pokémon data in that generation. User Brown filters the JSON object with "name" attribute and finds the data of Pikachu.

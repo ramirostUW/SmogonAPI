@@ -43,41 +43,35 @@ The following diagram depicts the interaction between the listed components
 
 ![](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=dGl0bGUgU21vZ29uIEFQSQoKVXNlci0-QVBJIFNlcnZlcjogUG9rZW1vbiBpbmZvcm1hdGlvbiByZXF1ZXN0CgAeCi0-AD8HVVJMIEdlbmVyYXRvcjogUgAkBgA9CXdlYnBhZ2UgVVJMCgAeFABuDlJldHVybgAoFQBvDFdlYiBjcmF3bGVyOiBTdWJtaXQgdwAKCgCBJwggd2l0aAB1BQAmCwCBMAlXZWJzaXRlOiBBY2Nlc3MAgg4IAIEqBwCBJQgAHwcAZBAAHw0gYm9keQBWDgCCORggcGFyc2VkIGZyb20AYgkAgkoMVXMAgXsNAIJ6Ego&s=default)
 
-### Check StrategyDex
+### Check Best Pokémons
 
-*API:* Issues a prompt asking whethere the user wants information for a Pokémon or an item.
+*User:* Goes to "getTopPokemon" endpoint
 
-*User:* Checks "Pokémon" or "Item"
+*User:* Adds "stats=atk" for the attack stat
 
-*API:* Issues a prompt asking for what Pokémon or item the user wants to profile. Has additional fields for optional parameters such as generation
+*User:* Appends "&gen=sv" for the Scarlet & Violet generation
 
-*User:* Enters input data for the Pokémon or item they want to profile, including any additional parameters.
+*API:* Returns a JSON object that contains a list of five Pokémons with highest attack stat in the Scarlet & Violet generation. If the generation or stat is not found, it returns an error page.
 
-*API:* Returns the StrategyDex page for the given Pokémona/item, and generation. If no generation is specified, the most recent generation is returned. If either input is invalid, it returns an error page.
+*User:* Appends "&stats=spd" to take the speed into consideration
 
-### Get In-Game Items
+*API:* Returns a JSON object that contains a list of five Pokémons with highest average stat of attack and speed. If the generation or stat is not found, it returns an error page.
 
-*API:* Issues a prompt asking for the item that the user wants to find
+### Get Generation Items
 
-*User:* Enters the name of an item
+*User:* Goes to "GetItems" endpoint
 
-*API:* Issues a dropdown menu asking what game that the user is interested in finding the item for. The menu should only list eligible games for the item that the user specified. If the user specified an invalid item, an error is thrown.
+*User:* Adds "/ss" for the Sword & Shield generation
 
-*User:* Selects the game.
-
-*API:* Returns the location of the item for the game that user specified.
+*API:* Returns a JSON object that contains a list of items available in the Sword & Shield generation. If the generation is not found, it returns an error page.
 
 ### Query Pokémon Data
 
-*API:* Issues a prompt asking what Pokémon(s) the user wants data for, with an option for "All Pokémon" if no specific Pokémon(s) is specified.
+*User:* Goes to "GetPokemonByGen" endpoint
 
-*User:* Enters the Pokémon information
+*User:* Adds "/sv" for the Scarlet & Violet generation
 
-*API:* Issues a prompt for the generation(s) that the user is interested in, with an option for "All Generations" if no specific generation is specified
-
-*User:* Enters the generation(s)
-
-*API:* Scrapes the data from Smogon for the particular Pokémon(s) and generation(s) that the user specified. The resulting CSV file will include the Name of the Pokémon, the generation, their type(s), available Abilities, the competitive tier they are listed in, and their base stats (HP, Attack, Defense, Sp. Atk, Sp. Def, Speed).
+*API:* Returns a JSON object that contains a list of Pokémons in the Scarlet & Violet generation. If the generation is not found, it returns an error page.
 
 ## Preliminary Plan
 
